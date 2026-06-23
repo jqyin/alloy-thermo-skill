@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH -A {{ACCOUNT}}
+#SBATCH -J {{JOB_NAME}}
+#SBATCH -N {{NODES}}
+#SBATCH -n {{NTASKS}}
+#SBATCH -t {{WALLTIME}}
+{{PARTITION_LINE}}
+#SBATCH -o {{JOB_NAME}}-%j.out
+#SBATCH -e {{JOB_NAME}}-%j.err
+
+# --- environment -----------------------------------------------------------
+{{MODULES}}
+
+set -euo pipefail
+cd {{RUNDIR}}
+
+# Number of MPI ranks == number of parallel-tempering temperature replicas.
+# The engine reads composition.input and coupling.input from this directory.
+echo "Starting alloy-mc: {{NTASKS}} replicas on {{NODES}} node(s)"
+srun -n {{NTASKS}} {{BINARY}} {{CONTROL}} {{SEED}}
+echo "alloy-mc finished with exit code $?"

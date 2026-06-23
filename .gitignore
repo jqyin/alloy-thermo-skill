@@ -1,0 +1,24 @@
+# Build artifacts
+engine/*.o
+engine/src/*.o
+engine/alloy_mc
+engine/test_consistency
+engine/build/
+
+# Run outputs
+run/
+**/run/
+*.csv
+thermo_run*.csv
+checkpoint_run*_rank*.bin
+*.xyz
+analysis/
+**/analysis/
+manifest.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.DS_Store
