@@ -18,7 +18,7 @@ public:
     // replicas explore configuration space independently but reproducibly.
     explicit Rng(std::uint64_t base_seed, int rank = 0) {
         std::seed_seq seq{base_seed, static_cast<std::uint64_t>(rank),
-                          0x9e3779b97f4a7c15ULL};
+                          static_cast<std::uint64_t>(0x9e3779b97f4a7c15ULL)};
         gen_.seed(seq);
     }
 
